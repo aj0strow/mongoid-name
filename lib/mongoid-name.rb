@@ -12,5 +12,9 @@ module Mongoid
       @first, @last = args.shift, args.pop
       @middle = args.join(' ') if args.any?
     end
+
+    def mongoize
+      [ first, middle, last ].compact
+    end
   end
 end

@@ -27,4 +27,10 @@ describe Mongoid::Name do
       assert_equal 'Ostrow', @name.last
     end
   end
+
+  describe '#mongoize' do
+    it 'should store the name as an array' do
+      assert_equal %w(AJ Ostrow), @name.mongoize
+    end
+  end
 end
