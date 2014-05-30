@@ -1,9 +1,4 @@
-$LOAD_PATH.unshift(File.expand_path('../../lib', __FILE__))
-
-require 'mongoid'
-require 'mongoid-name'
-require 'minitest/autorun'
-require 'minitest/pride'
+require 'test_helper'
 
 describe Mongoid::Name do
   before do
@@ -31,6 +26,24 @@ describe Mongoid::Name do
   describe '#mongoize' do
     it 'should store the name as an array' do
       assert_equal %w(AJ Ostrow), @name.mongoize
+    end
+  end
+
+  describe '::demongoize' do
+    it 'should create a name object' do
+      assert_equal @name, Mongoid::Name.demongoize(%w(AJ Ostrow))
+    end
+  end
+
+  describe '::mongoize' do
+    it 'should convert to string array' do
+      assert_equal %w(AJ Ostrow), Mongoid::Name.mongoize(@name)
+    end
+  end
+
+  describe '::evolve' do
+    it 'should convert to string array' do
+      assert_equal %w(AJ Ostrow), Mongoid::Name.evolve(@name)
     end
   end
 end
